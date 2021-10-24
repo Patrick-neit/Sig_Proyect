@@ -49,7 +49,10 @@ flutter:
   assets:
     - assets/images/logoaid.png
     - assets/images/backsig.jpeg
+
     - assets/images/bomberos.jpeg
+    - assets/images/policia.jpeg
+    - assets/images/ambulancia.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

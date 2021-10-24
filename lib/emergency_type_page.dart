@@ -20,16 +20,88 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('OUR SERVICES'),
-              Flexible(
-                child: Image.asset(
-                  'assets/images/bomberos.jpeg',
-                  height: 200.0,
-                ),
+              Image.asset(
+                'assets/images/bomberos.jpeg',
+                height: 100.0,
               ),
+              _buttobomberos(),
+              const SizedBox(
+                height: 15.0,
+              ),
+              Image.asset(
+                'assets/images/policia.jpeg',
+                height: 100.0,
+              ),
+              _buttopolicia(),
+              const SizedBox(
+                height: 15.0,
+              ),
+              Image.asset(
+                'assets/images/ambulancia.jpeg',
+                height: 100.0,
+              ),
+              const SizedBox(
+                height: 15.0,
+              ),
+              _buttomambulance(),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _buttobomberos() {
+    return StreamBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      // ignore: deprecated_member_use
+      return RaisedButton(
+          child: Container(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+            child: const Text('Solicitar Bombero'),
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 10.0,
+          color: Colors.redAccent,
+          onPressed: () {
+            // Navigator.pushReplacementNamed(context, '/register_user_page');
+          });
+    });
+  }
+}
+
+Widget _buttopolicia() {
+  return StreamBuilder(builder: (BuildContext context, AsyncSnapshot snapshot) {
+    // ignore: deprecated_member_use
+    return RaisedButton(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+          child: const Text('Solicitar Patrulla'),
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 10.0,
+        color: Colors.lightBlueAccent,
+        onPressed: () {
+          //Navigator.pushReplacementNamed(context, '/register_user_page');
+        });
+  });
+}
+
+Widget _buttomambulance() {
+  return StreamBuilder(builder: (BuildContext context, AsyncSnapshot snapshot) {
+    // ignore: deprecated_member_use
+    return RaisedButton(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+          child: const Text('Solicitar Ambulancia'),
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 10.0,
+        color: Colors.yellowAccent,
+        onPressed: () {
+          // Navigator.pushReplacementNamed(context, '/register_user_page');
+        });
+  });
 }
