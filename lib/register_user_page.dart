@@ -19,18 +19,18 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         ),
         body: Column(
           children: [
-            const Text('Solicite su Vacacion!'),
+            const Text('Ingrese sus datos!'),
             _usernametextfield(),
             const SizedBox(
-              height: 1.0,
+              height: 15.0,
             ),
             _userpassintextfield(),
             const SizedBox(
-              height: 1.0,
+              height: 20.0,
             ),
             _bottomSubmit(),
             const SizedBox(
-              height: 2.0,
+              height: 15.0,
             ),
           ],
         ),
@@ -93,7 +93,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
           color: Colors.greenAccent,
           onPressed: () {
             //Aqui tenemos q llamar a la funcion login
-            Navigator.pushReplacementNamed(context, '/loginpage');
+            Navigator.pushReplacementNamed(context, '/emergency_type_page');
             // Login();
           });
     });

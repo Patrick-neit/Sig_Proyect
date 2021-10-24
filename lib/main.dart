@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sig_proyect/emergency_type_page.dart';
 import 'package:sig_proyect/register_user_page.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class SigApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/loginpage': (BuildContext context) => const SigLoginPage(),
         '/register_user_page': (BuildContext context) =>
-            const RegisterUserPage()
+            const RegisterUserPage(),
+        '/emergency_type_page': (BuildContext context) => const TipoEmergencia()
       },
     );
   }
@@ -32,8 +34,8 @@ class SigLoginPage extends StatefulWidget {
 }
 
 class _SigLoginState extends State<SigLoginPage> {
-  TextEditingController controllerId = new TextEditingController();
-  TextEditingController controllerPass = new TextEditingController();
+  TextEditingController controllerId = TextEditingController();
+  TextEditingController controllerPass = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
