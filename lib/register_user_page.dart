@@ -8,8 +8,15 @@ class RegisterUserPage extends StatefulWidget {
 }
 
 class _RegisterUserPageState extends State<RegisterUserPage> {
-  TextEditingController controllerUser = TextEditingController();
-  TextEditingController controllerPass = TextEditingController();
+  TextEditingController controllerName = TextEditingController();
+  TextEditingController controllerFirstName = TextEditingController();
+  TextEditingController controllerSecondName = TextEditingController();
+  TextEditingController controllerCi = TextEditingController();
+  TextEditingController controllerCiExp = TextEditingController();
+  TextEditingController controllerCellphone = TextEditingController();
+  TextEditingController controllerAdress = TextEditingController();
+  TextEditingController controllerGener = TextEditingController();
+  TextEditingController controllerEmail = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,17 +27,45 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         body: Column(
           children: [
             const Text('Ingrese sus datos!'),
-            _usernametextfield(),
+            _nametextfield(),
             const SizedBox(
-              height: 15.0,
+              height: 2.0,
             ),
-            _userpassintextfield(),
+            _firstnametextfield(),
             const SizedBox(
-              height: 20.0,
+              height: 2.0,
+            ),
+            _secondnametextfield(),
+            const SizedBox(
+              height: 2.0,
+            ),
+            _citextfield(),
+            const SizedBox(
+              height: 2.0,
+            ),
+            _ciexptextfield(),
+            const SizedBox(
+              height: 2.0,
+            ),
+            _cellphonetextfield(),
+            const SizedBox(
+              height: 2.0,
+            ),
+            _adresstextfield(),
+            const SizedBox(
+              height: 2.0,
+            ),
+            _genertextfield(),
+            const SizedBox(
+              height: 2.0,
+            ),
+            _emailtextfield(),
+            const SizedBox(
+              height: 2.0,
             ),
             _bottomSubmit(),
             const SizedBox(
-              height: 15.0,
+              height: 2.0,
             ),
           ],
         ),
@@ -38,42 +73,183 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
     );
   }
 
-  Widget _usernametextfield() {
+  Widget _nametextfield() {
     return StreamBuilder(
         // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: TextFormField(
-          controller: controllerUser,
-          decoration: const InputDecoration(
-            icon: Icon(Icons.email),
-            hintText: 'ejemplo@gmail.com',
-            labelText: 'UserName',
-          ),
-          onChanged: (value) {},
-        ),
-      );
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerName,
+            decoration: InputDecoration(
+              labelText: 'Name',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
     });
   }
 
-  Widget _userpassintextfield() {
+  Widget _firstnametextfield() {
     return StreamBuilder(
         // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: TextFormField(
-          controller: controllerPass,
-          obscureText: true,
-          decoration: const InputDecoration(
-            icon: Icon(Icons.lock),
-            hintText: '***',
-            labelText: 'Put your Password',
-          ),
-          onChanged: (value) {},
-        ),
-      );
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerFirstName,
+            decoration: InputDecoration(
+              labelText: 'Apellido Paterno',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _secondnametextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerSecondName,
+            decoration: InputDecoration(
+              labelText: 'Apellido Materno',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _citextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerCi,
+            decoration: InputDecoration(
+              labelText: 'Carnet Identidad',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _ciexptextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerCiExp,
+            decoration: InputDecoration(
+              labelText: 'Expedido',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _cellphonetextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerCellphone,
+            decoration: InputDecoration(
+              labelText: 'Celular',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _adresstextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerAdress,
+            decoration: InputDecoration(
+              labelText: 'Direccion',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _genertextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerGener,
+            decoration: InputDecoration(
+              labelText: 'Genero',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
+  Widget _emailtextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            controller: controllerEmail,
+            decoration: InputDecoration(
+              labelText: 'Correo Electronico',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
     });
   }
 
@@ -93,7 +269,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
           color: Colors.greenAccent,
           onPressed: () {
             //Aqui tenemos q llamar a la funcion login
-            Navigator.pushReplacementNamed(context, '/emergency_type_page');
+            Navigator.pushReplacementNamed(context, '/login_page');
             // Login();
           });
     });
