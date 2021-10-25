@@ -31,6 +31,10 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
             const SizedBox(
               height: 2.0,
             ),
+            _bottomSubmit(),
+            const SizedBox(
+              height: 2.0,
+            ),
             _firstnametextfield(),
             const SizedBox(
               height: 2.0,
@@ -60,10 +64,6 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
               height: 2.0,
             ),
             _emailtextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _bottomSubmit(),
             const SizedBox(
               height: 2.0,
             ),

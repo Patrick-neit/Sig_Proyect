@@ -23,7 +23,7 @@ class SigApp extends StatelessWidget {
             const RegisterUserPage(),
         '/emergency_type_page': (BuildContext context) =>
             const TipoEmergencia(),
-        '/login_page.dart': (BuildContext context) => const LoginPage()
+        '/login_page': (BuildContext context) => const LoginPage()
       },
     );
   }

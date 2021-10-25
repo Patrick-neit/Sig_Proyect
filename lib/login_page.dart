@@ -19,7 +19,17 @@ class _LoginPageState extends State<LoginPage> {
         ),
         body: Column(
           children: [
+            const SizedBox(
+              height: 80.0,
+            ),
             const Text('Ingrese sus datos!'),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Image.asset(
+              'assets/images/login.jpeg',
+              height: 200.0,
+            ),
             _usernametextfield(),
             const SizedBox(
               height: 15.0,
