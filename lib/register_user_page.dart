@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sig_proyect/models/personas_register.dart';
+import 'package:sig_proyect/services/personas_services.dart';
 
 class RegisterUserPage extends StatefulWidget {
   const RegisterUserPage({Key? key}) : super(key: key);
@@ -267,10 +269,55 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           elevation: 10.0,
           color: Colors.greenAccent,
-          onPressed: () {
-            //Aqui tenemos q llamar a la funcion login
-            Navigator.pushReplacementNamed(context, '/login_page');
-            // Login();
+          onPressed: () async {
+            // ignore: unnecessary_new, unused_local_variable
+            RegisterUser registerUser = new RegisterUser(
+                nombres: controllerName.text,
+                primerApellido: controllerFirstName.text,
+                segundoApellido: controllerSecondName.text,
+                ci: controllerCi.text,
+                ciExp: controllerCiExp.text,
+                celular: controllerCellphone.text,
+                direccion: controllerAdress.text,
+                genero: controllerGener.text,
+                correo: controllerEmail.text);
+            // ignore: unnecessary_new
+            bool estado = await new PersonasRegisterService()
+                .personasregister(registerUser);
+            if (estado = true) {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (context) => AlertDialog(
+                  title: Text('Registrado con exito'),
+                  content: Text('Login here'),
+                  actions: <Widget>[
+                    // ignore: deprecated_member_use
+                    FlatButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, '/login_page');
+                        },
+                        child: const Text('login')),
+                  ],
+
+                  //backgroundColor: Colors.redAccent,
+                  //shape: CircleBorder(),
+                ),
+              );
+            } else {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (context) => const AlertDialog(
+                    title: Text('Re check your information'),
+                    content: Text('Back')
+
+                    //backgroundColor: Colors.redAccent,
+                    //shape: CircleBorder(),
+                    ),
+              );
+            }
           });
     });
   }
