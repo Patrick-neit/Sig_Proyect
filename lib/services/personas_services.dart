@@ -13,6 +13,8 @@ class PersonasRegisterService {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       // ignore: avoid_print
+
+      // ignore: avoid_print
       print(per);
       return true;
     } else {

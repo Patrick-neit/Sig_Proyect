@@ -28,47 +28,56 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         ),
         body: Column(
           children: [
-            const Text('Ingrese sus datos!'),
-            _nametextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _bottomSubmit(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _firstnametextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _secondnametextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _citextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _ciexptextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _cellphonetextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _adresstextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _genertextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
-            _emailtextfield(),
-            const SizedBox(
-              height: 2.0,
-            ),
+            Expanded(
+                child: SingleChildScrollView(
+              //Scrolleo la vista usando Expanded
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  const Text('Ingrese sus datos!'),
+                  _nametextfield(),
+                  const SizedBox(
+                    height: 1.0,
+                  ),
+                  _firstnametextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _secondnametextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _citextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _ciexptextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _cellphonetextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _adresstextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _genertextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _emailtextfield(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                  _bottomSubmit(),
+                  const SizedBox(
+                    height: 2.0,
+                  ),
+                ],
+              ),
+            )),
           ],
         ),
       ),
@@ -81,6 +90,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerName,
             decoration: InputDecoration(
@@ -101,6 +111,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerFirstName,
             decoration: InputDecoration(
@@ -121,6 +132,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerSecondName,
             decoration: InputDecoration(
@@ -141,6 +153,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerCi,
             decoration: InputDecoration(
@@ -161,6 +174,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerCiExp,
             decoration: InputDecoration(
@@ -181,6 +195,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerCellphone,
             decoration: InputDecoration(
@@ -201,6 +216,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerAdress,
             decoration: InputDecoration(
@@ -221,6 +237,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerGener,
             decoration: InputDecoration(
@@ -241,6 +258,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         builder: (BuildContext context, AsyncSnapshot) {
       return Container(
           padding: const EdgeInsets.all(20),
+          height: 70.0,
           child: TextFormField(
             controller: controllerEmail,
             decoration: InputDecoration(
@@ -281,7 +299,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                 direccion: controllerAdress.text,
                 genero: controllerGener.text,
                 correo: controllerEmail.text);
-            // ignore: unnecessary_new
+            // ignore: unnecessary_new, unused_local_variable
             bool estado = await new PersonasRegisterService()
                 .personasregister(registerUser);
             if (estado = true) {
@@ -289,8 +307,8 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                 context: context,
                 barrierDismissible: true,
                 builder: (context) => AlertDialog(
-                  title: Text('Registrado con exito'),
-                  content: Text('Login here'),
+                  title: const Text('Registrado con exito'),
+                  content: const Text('Login here'),
                   actions: <Widget>[
                     // ignore: deprecated_member_use
                     FlatButton(

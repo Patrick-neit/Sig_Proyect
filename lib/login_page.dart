@@ -8,6 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController controllerapp = TextEditingController();
   TextEditingController controllerUser = TextEditingController();
   TextEditingController controllerPass = TextEditingController();
   @override
@@ -20,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Column(
           children: [
             const SizedBox(
-              height: 80.0,
+              height: 50.0,
             ),
             const Text('Ingrese sus datos!'),
             const SizedBox(
@@ -28,7 +29,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Image.asset(
               'assets/images/login.jpeg',
-              height: 200.0,
+              height: 160.0,
+            ),
+            _tipoapptextfield(),
+            const SizedBox(
+              height: 15.0,
             ),
             _usernametextfield(),
             const SizedBox(
@@ -42,10 +47,32 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 15.0,
             ),
+            _bottomregister(),
+            const SizedBox(
+              height: 15.0,
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _tipoapptextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextFormField(
+          controller: controllerapp,
+          decoration: const InputDecoration(
+            icon: Icon(Icons.toys_rounded),
+            labelText: 'Tipo',
+          ),
+          onChanged: (value) {},
+        ),
+      );
+    });
   }
 
   Widget _usernametextfield() {
@@ -106,6 +133,26 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pushReplacementNamed(context, '/emergency_type_page');
             // Login();
           });
+    });
+  }
+
+  Widget _bottomregister() {
+    return StreamBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      // ignore: deprecated_member_use
+      return SizedBox(
+        height: 70,
+        width: 70,
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/register_user_page');
+          },
+          child: const Text(
+            "Registrate",
+            style: TextStyle(fontSize: 10),
+          ),
+        ),
+      );
     });
   }
 }

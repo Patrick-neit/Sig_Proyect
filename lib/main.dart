@@ -81,7 +81,7 @@ class _SigLoginState extends State<SigLoginPage> {
           color: Colors.lightBlueAccent,
           onPressed: () {
             //Aqui tenemos q llamar a la funcion login
-            Navigator.pushReplacementNamed(context, '/register_user_page');
+            Navigator.pushReplacementNamed(context, '/login_page');
             // Login();
           });
     });
