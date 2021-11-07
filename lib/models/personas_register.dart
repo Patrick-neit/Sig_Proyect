@@ -16,6 +16,7 @@ class RegisterUser {
     required this.direccion,
     required this.genero,
     required this.correo,
+    required this.tipo,
   });
 
   final String nombres;
@@ -27,6 +28,7 @@ class RegisterUser {
   final String direccion;
   final String genero;
   final String correo;
+  final String tipo;
 
   factory RegisterUser.fromMap(Map<String, dynamic> json) => RegisterUser(
         nombres: json["nombres"],
@@ -38,6 +40,7 @@ class RegisterUser {
         direccion: json["direccion"],
         genero: json["genero"],
         correo: json["correo"],
+        tipo: json["tipo"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -50,5 +53,6 @@ class RegisterUser {
         "direccion": direccion,
         "genero": genero,
         "correo": correo,
+        "tipo": tipo,
       };
 }

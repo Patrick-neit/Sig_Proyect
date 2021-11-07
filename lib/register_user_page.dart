@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sig_proyect/models/personas_register.dart';
 import 'package:sig_proyect/services/personas_services.dart';
@@ -19,6 +20,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
   TextEditingController controllerAdress = TextEditingController();
   TextEditingController controllerGener = TextEditingController();
   TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerTipo = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,6 +37,10 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
               child: Column(
                 children: [
                   const Text('Ingrese sus datos!'),
+                  _apptextfield(),
+                  const SizedBox(
+                    height: 1.0,
+                  ),
                   _nametextfield(),
                   const SizedBox(
                     height: 1.0,
@@ -273,6 +279,28 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
     });
   }
 
+  Widget _apptextfield() {
+    return StreamBuilder(
+        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+        builder: (BuildContext context, AsyncSnapshot) {
+      return Container(
+          padding: const EdgeInsets.all(20),
+          height: 70.0,
+          child: TextFormField(
+            controller: controllerTipo,
+            decoration: InputDecoration(
+              labelText: 'Tipo',
+              icon: const Icon(Icons.add_box_sharp),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              fillColor: Colors.grey[300],
+              filled: true,
+              //hintText: "Ingresa fecha final vacacional"
+            ),
+          ));
+    });
+  }
+
   Widget _bottomSubmit() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -298,7 +326,8 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                 celular: controllerCellphone.text,
                 direccion: controllerAdress.text,
                 genero: controllerGener.text,
-                correo: controllerEmail.text);
+                correo: controllerEmail.text,
+                tipo: controllerTipo.text);
             // ignore: unnecessary_new, unused_local_variable
             bool estado = await new PersonasRegisterService()
                 .personasregister(registerUser);
