@@ -331,7 +331,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
             // ignore: unnecessary_new, unused_local_variable
             bool estado = await new PersonasRegisterService()
                 .personasregister(registerUser);
-            if (estado = true) {
+            if (estado) {
               showDialog(
                 context: context,
                 barrierDismissible: true,
@@ -357,7 +357,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                 context: context,
                 barrierDismissible: true,
                 builder: (context) => const AlertDialog(
-                    title: Text('Re check your information'),
+                    title: Text('Re check your information|| Empty values'),
                     content: Text('Back')
 
                     //backgroundColor: Colors.redAccent,

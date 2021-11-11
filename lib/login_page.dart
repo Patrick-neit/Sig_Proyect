@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sig_proyect/models/login_register.dart';
+import 'package:sig_proyect/services/login_services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -128,10 +130,30 @@ class _LoginPageState extends State<LoginPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           elevation: 10.0,
           color: Colors.greenAccent,
-          onPressed: () {
-            //Aqui tenemos q llamar a la funcion login
-            Navigator.pushReplacementNamed(context, '/emergency_type_page');
-            // Login();
+          onPressed: () async {
+            // ignore: unused_local_variable, unnecessary_new
+            LoginUser loginUser = new LoginUser(
+              app: controllerapp.text,
+              login: controllerUser.text,
+              password: controllerPass.text,
+            );
+            // ignore: unused_local_variable
+            bool loginsuccess = await LoginService().loginregister(loginUser);
+            if (loginsuccess) {
+              Navigator.pushReplacementNamed(context, '/emergency_type_page');
+            } else {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (context) => const AlertDialog(
+                    title: Text('Re check your information||Empty Values'),
+                    content: Text('Back')
+
+                    //backgroundColor: Colors.redAccent,
+                    //shape: CircleBorder(),
+                    ),
+              );
+            }
           });
     });
   }

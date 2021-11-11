@@ -1,13 +1,13 @@
 import 'package:http/http.dart' as http;
-import 'package:sig_proyect/models/personas_register.dart';
+import 'package:sig_proyect/models/login_register.dart';
 
-class PersonasRegisterService {
-  Future<bool> personasregister(RegisterUser registerUser) async {
-    const url = 'http://127.0.0.1:8000/api/registrar-usuario';
-    var per = registerUserToMap(registerUser);
+class LoginService {
+  Future<bool> loginregister(LoginUser loginUser) async {
+    const url = 'http://127.0.0.1:8000/api/autentificar';
+    var log = loginUserToMap(loginUser);
     final response = await http.post(
       Uri.parse(url),
-      body: per,
+      body: log,
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -15,7 +15,7 @@ class PersonasRegisterService {
       // ignore: avoid_print
 
       // ignore: avoid_print
-      print(per);
+      print(log);
       return true;
     } else {
       return false;
