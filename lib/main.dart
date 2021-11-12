@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sig_proyect/emergency_type_page.dart';
+import 'package:sig_proyect/locations/mylocation_maps.dart';
 import 'package:sig_proyect/login_page.dart';
 import 'package:sig_proyect/register_user_page.dart';
 
@@ -23,7 +24,8 @@ class SigApp extends StatelessWidget {
             const RegisterUserPage(),
         '/emergency_type_page': (BuildContext context) =>
             const TipoEmergencia(),
-        '/login_page': (BuildContext context) => const LoginPage()
+        '/login_page': (BuildContext context) => const LoginPage(),
+        '/mylocation_maps': (BuildContext context) => const MyLocation()
       },
     );
   }

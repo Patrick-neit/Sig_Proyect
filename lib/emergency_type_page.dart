@@ -66,7 +66,7 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
           elevation: 10.0,
           color: Colors.redAccent,
           onPressed: () {
-            // Navigator.pushReplacementNamed(context, '/register_user_page');
+            Navigator.pushReplacementNamed(context, '/mylocation_maps');
           });
     });
   }
