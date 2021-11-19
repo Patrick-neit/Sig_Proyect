@@ -14,13 +14,16 @@ class MyLocation extends StatefulWidget {
 class _MyLocationState extends State<MyLocation> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  static const CameraPosition _initialubication = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+//Posicion inicial
+  final CameraPosition _initialubication = const CameraPosition(
+    target: LatLng(-17.7335177, -63.1256928), //Mi casita xd
+    zoom: 16,
   );
-  static const CameraPosition CamPositionUb = CameraPosition(
+
+  static const CameraPosition camPositionUb = CameraPosition(
+      //Place position destination (Ficct)
       bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
+      target: LatLng(-17.7760277, -63.1953877),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
@@ -28,27 +31,30 @@ class _MyLocationState extends State<MyLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _initialubication,
+        myLocationButtonEnabled: true, //Hide the buttom witch contains my ub
+        scrollGesturesEnabled: true, //Block/allow the Scrolled movement
+        zoomGesturesEnabled: false, //Block the zoom
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('Go to my ubication!'),
+        onPressed: _goToTheFicct,
+        label: const Text('Go to The Ficct!'),
         icon: const Icon(Icons.directions_boat),
       ),
     );
   }
 
-  Future<void> _goToTheLake() async {
-    _getMyPosition();
+  Future<void> _goToTheFicct() async {
+    // _getMyPosition();
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CamPositionUb));
+    controller.animateCamera(CameraUpdate.newCameraPosition(camPositionUb));
   }
 
-  Future<void> _getMyPosition() async {
-    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  }
+//  Future<void> _getMyPosition() async {
+  //  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  // }
 }
