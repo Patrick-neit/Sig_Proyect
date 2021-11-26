@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sig_proyect/global_var.dart';
 import 'package:sig_proyect/models/login_register.dart';
 import 'package:sig_proyect/services/login_services.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -116,6 +119,17 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
+  void login() async {
+    var url = Uri.parse('http://10.0.2.2:8000/api/autentificar');
+    var response = await http.post(url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(
+            {'login': controllerUser.text, 'pass': controllerPass.text}));
+    var data = json.decode(response.body);
+    idusuario = data['id'];
+    tipousuario = data['app'];
+  }
+
   Widget _bottomSubmit() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -137,9 +151,11 @@ class _LoginPageState extends State<LoginPage> {
               login: controllerUser.text,
               password: controllerPass.text,
             );
+
             // ignore: unused_local_variable
             bool loginsuccess = await LoginService().loginregister(loginUser);
             if (loginsuccess) {
+              tipousuario = controllerapp.text;
               Navigator.pushReplacementNamed(context, '/emergency_type_page');
             } else {
               showDialog(

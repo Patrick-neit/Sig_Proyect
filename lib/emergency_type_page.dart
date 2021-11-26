@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sig_proyect/global_var.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class TipoEmergencia extends StatefulWidget {
   const TipoEmergencia({Key? key}) : super(key: key);
@@ -13,7 +16,7 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Servicios disponibles'),
+          title: Text('Servicios disponibles' + tipousuario),
         ),
         body: Center(
           child: Column(
@@ -51,6 +54,13 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
     );
   }
 
+  void sendmyubication() async {
+    var url =
+        Uri.parse('http://10.0.2.2:8000/send/solicitud_emergencia/usuario');
+    var response = await http.post(url);
+    var data = json.decode(response.body);
+  }
+
   Widget _buttobomberos() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -65,7 +75,8 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           elevation: 10.0,
           color: Colors.redAccent,
-          onPressed: () {
+          onPressed: () async {
+            sendmyubication();
             Navigator.pushReplacementNamed(context, '/mylocation_maps');
           });
     });
