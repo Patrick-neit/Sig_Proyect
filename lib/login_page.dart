@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sig_proyect/global_var.dart';
 import 'package:sig_proyect/models/login_register.dart';
 import 'package:sig_proyect/services/login_services.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -25,37 +23,44 @@ class _LoginPageState extends State<LoginPage> {
         ),
         body: Column(
           children: [
-            const SizedBox(
-              height: 50.0,
-            ),
-            const Text('Ingrese sus datos!'),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Image.asset(
-              'assets/images/login.jpeg',
-              height: 160.0,
-            ),
-            _tipoapptextfield(),
-            const SizedBox(
-              height: 15.0,
-            ),
-            _usernametextfield(),
-            const SizedBox(
-              height: 15.0,
-            ),
-            _userpassintextfield(),
-            const SizedBox(
-              height: 20.0,
-            ),
-            _bottomSubmit(),
-            const SizedBox(
-              height: 15.0,
-            ),
-            _bottomregister(),
-            const SizedBox(
-              height: 15.0,
-            ),
+            Expanded(
+                child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 50.0,
+                        ),
+                        const Text('Ingrese sus datos!'),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Image.asset(
+                          'assets/images/login.jpeg',
+                          height: 160.0,
+                        ),
+                        _tipoapptextfield(),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        _usernametextfield(),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        _userpassintextfield(),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        _bottomSubmit(),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        _bottomregister(),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                      ],
+                    )))
           ],
         ),
       ),
@@ -119,17 +124,6 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void login() async {
-    var url = Uri.parse('http://10.0.2.2:8000/api/autentificar');
-    var response = await http.post(url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode(
-            {'login': controllerUser.text, 'pass': controllerPass.text}));
-    var data = json.decode(response.body);
-    idusuario = data['id'];
-    tipousuario = data['app'];
-  }
-
   Widget _bottomSubmit() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -145,18 +139,22 @@ class _LoginPageState extends State<LoginPage> {
           elevation: 10.0,
           color: Colors.greenAccent,
           onPressed: () async {
-            // ignore: unused_local_variable, unnecessary_new
-            LoginUser loginUser = new LoginUser(
-              app: controllerapp.text,
-              login: controllerUser.text,
-              password: controllerPass.text,
-            );
-
-            // ignore: unused_local_variable
+            LoginUser loginUser = LoginUser(
+                app: controllerapp.text,
+                login: controllerUser.text,
+                password: controllerPass.text);
             bool loginsuccess = await LoginService().loginregister(loginUser);
+            // ignore: avoid_print
+            //print(appusuario);
+
             if (loginsuccess) {
-              tipousuario = controllerapp.text;
-              Navigator.pushReplacementNamed(context, '/emergency_type_page');
+              //tipousuario = controllerapp.text;
+              if (tipocliente == tipousuario) {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/emergency_type_page', (Route<dynamic> route) => false);
+                //Navigator.pushReplacementNamed(context, '/cliente_page');
+
+              }
             } else {
               showDialog(
                 context: context,

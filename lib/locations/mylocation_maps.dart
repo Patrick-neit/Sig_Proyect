@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:sig_proyect/global_var.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MyLocation extends StatefulWidget {
   const MyLocation({Key? key}) : super(key: key);
+
+  final LatLng myubi =
+      const LatLng(-17.7335177, -63.1256928); //var to send through my api
 
   @override
   State<MyLocation> createState() => _MyLocationState();
@@ -45,7 +47,7 @@ class _MyLocationState extends State<MyLocation> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheFicct,
-        label: const Text('Go to The Ficct!'),
+        label: const Text('Seguir trayectoria'),
         icon: const Icon(Icons.directions_boat),
       ),
     );

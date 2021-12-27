@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sig_proyect/global_var.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:sig_proyect/models/solicitud_emergencia_register.dart';
+import 'package:sig_proyect/services/solicitud_emergencia_services.dart';
 
 class TipoEmergencia extends StatefulWidget {
   const TipoEmergencia({Key? key}) : super(key: key);
@@ -16,7 +16,8 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Servicios disponibles' + tipousuario),
+          title:
+              Text('Servicios disponibles      ' + nombreusuarioautentificado),
         ),
         body: Center(
           child: Column(
@@ -54,13 +55,6 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
     );
   }
 
-  void sendmyubication() async {
-    var url =
-        Uri.parse('http://10.0.2.2:8000/send/solicitud_emergencia/usuario');
-    var response = await http.post(url);
-    var data = json.decode(response.body);
-  }
-
   Widget _buttobomberos() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -76,8 +70,48 @@ class _TipoEmergenciaState extends State<TipoEmergencia> {
           elevation: 10.0,
           color: Colors.redAccent,
           onPressed: () async {
-            sendmyubication();
-            Navigator.pushReplacementNamed(context, '/mylocation_maps');
+            SolicitudEmergenciaPost solicitudEmergenciaPost =
+                SolicitudEmergenciaPost(
+                    ubicacion: ubicacioncliente,
+                    tipoApoyo: tipobombero,
+                    clienteId: idusuario);
+            bool solicitud = await SolicitudEmergencia()
+                .sendsolicitud(solicitudEmergenciaPost);
+
+            if (solicitud) {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (context) => AlertDialog(
+                  title: const Text('Solicitud enviada con exito'),
+                  content: const Text('Ver recorrido'),
+                  actions: <Widget>[
+                    // ignore: deprecated_member_use
+                    FlatButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, '/mylocation_maps');
+                        },
+                        child: const Text('Click to follow')),
+                  ],
+
+                  //backgroundColor: Colors.redAccent,
+                  //shape: CircleBorder(),
+                ),
+              );
+            } else {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (context) => const AlertDialog(
+                    title: Text('La solicitud no pudo ser enviada'),
+                    content: Text('Back')
+
+                    //backgroundColor: Colors.redAccent,
+                    //shape: CircleBorder(),
+                    ),
+              );
+            }
           });
     });
   }
@@ -94,8 +128,49 @@ Widget _buttopolicia() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         elevation: 10.0,
         color: Colors.lightBlueAccent,
-        onPressed: () {
-          //Navigator.pushReplacementNamed(context, '/register_user_page');
+        onPressed: () async {
+          SolicitudEmergenciaPost solicitudEmergenciaPost =
+              SolicitudEmergenciaPost(
+                  ubicacion: ubicacioncliente,
+                  tipoApoyo: tipopolicia,
+                  clienteId: idusuario);
+          bool solicitud = await SolicitudEmergencia()
+              .sendsolicitud(solicitudEmergenciaPost);
+
+          if (solicitud) {
+            showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) => AlertDialog(
+                title: const Text('Patrulla en camino'),
+                content: const Text('Ver recorrido'),
+                actions: <Widget>[
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, '/mylocation_maps');
+                      },
+                      child: const Text('Click to follow')),
+                ],
+
+                //backgroundColor: Colors.redAccent,
+                //shape: CircleBorder(),
+              ),
+            );
+          } else {
+            showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) => const AlertDialog(
+                  title: Text('La solicitud no pudo ser enviada'),
+                  content: Text('Back')
+
+                  //backgroundColor: Colors.redAccent,
+                  //shape: CircleBorder(),
+                  ),
+            );
+          }
         });
   });
 }
@@ -111,8 +186,49 @@ Widget _buttomambulance() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         elevation: 10.0,
         color: Colors.yellowAccent,
-        onPressed: () {
-          // Navigator.pushReplacementNamed(context, '/register_user_page');
+        onPressed: () async {
+          SolicitudEmergenciaPost solicitudEmergenciaPost =
+              SolicitudEmergenciaPost(
+                  ubicacion: ubicacioncliente,
+                  tipoApoyo: tipoambulancia,
+                  clienteId: idusuario);
+          bool solicitud = await SolicitudEmergencia()
+              .sendsolicitud(solicitudEmergenciaPost);
+
+          if (solicitud) {
+            showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) => AlertDialog(
+                title: const Text('Ambulancia en camino'),
+                content: const Text('Ver recorrido'),
+                actions: <Widget>[
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, '/mylocation_maps');
+                      },
+                      child: const Text('Click to follow')),
+                ],
+
+                //backgroundColor: Colors.redAccent,
+                //shape: CircleBorder(),
+              ),
+            );
+          } else {
+            showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) => const AlertDialog(
+                  title: Text('La solicitud no pudo ser enviada'),
+                  content: Text('Back')
+
+                  //backgroundColor: Colors.redAccent,
+                  //shape: CircleBorder(),
+                  ),
+            );
+          }
         });
   });
 }

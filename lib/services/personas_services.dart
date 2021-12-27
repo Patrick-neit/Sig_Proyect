@@ -3,7 +3,7 @@ import 'package:sig_proyect/models/personas_register.dart';
 
 class PersonasRegisterService {
   Future<bool> personasregister(RegisterUser registerUser) async {
-    const url = 'http://10.0.2.2:8000/api/registrar-usuario';
+    const url = 'http://127.0.0.1:8000/api/registrar-usuario';
     var per = registerUserToMap(registerUser);
     final response = await http.post(
       Uri.parse(url),
