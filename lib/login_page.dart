@@ -39,7 +39,6 @@ class _LoginPageState extends State<LoginPage> {
                           'assets/images/login.jpeg',
                           height: 160.0,
                         ),
-                        _tipoapptextfield(),
                         const SizedBox(
                           height: 15.0,
                         ),
@@ -67,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _tipoapptextfield() {
+  /*Widget _tipoapptextfield() {
     return StreamBuilder(
         // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
         builder: (BuildContext context, AsyncSnapshot) {
@@ -83,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     });
-  }
+  }*/
 
   Widget _usernametextfield() {
     return StreamBuilder(
@@ -140,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
           color: Colors.greenAccent,
           onPressed: () async {
             LoginUser loginUser = LoginUser(
-                app: controllerapp.text,
+                app: tipocliente,
                 login: controllerUser.text,
                 password: controllerPass.text);
             bool loginsuccess = await LoginService().loginregister(loginUser);
